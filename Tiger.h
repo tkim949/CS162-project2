@@ -21,6 +21,7 @@ public:
     ~Tiger() override;
     Tiger(int age, double cost, int numOfBabies, double baseFoodCost, double payoff);
 
+
 };
 
 

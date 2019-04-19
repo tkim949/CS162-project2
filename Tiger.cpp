@@ -16,4 +16,6 @@ Tiger::Tiger(int age, double cost, int numOfBabies, double baseFoodCost, double 
          :Animal(age, cost, numOfBabies, baseFoodCost, payoff)
          {
 
+
+
 }
