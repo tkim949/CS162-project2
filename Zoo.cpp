@@ -73,6 +73,7 @@ void Zoo::play(){
     Turtle turtle;
     //double baseCost = 10.00;
 
+
     tiger.setCost(10000.00);
     penguin.setCost(1000.00);
     turtle.setCost(100.00);
@@ -84,6 +85,10 @@ void Zoo::play(){
     tiger.setPayoff(tiger.getCost()*0.2);
     penguin.setPayoff(penguin.getCost()*0.1);
     turtle.setPayoff(turtle.getCost()*0.05);
+
+
+
+
 
     DArray room;
 
@@ -139,7 +144,7 @@ void Zoo::play(){
 
     for(int i =0; i <numOfTig; i++) {
 
-       arrayOfTi[i] = Tiger(0, tiger.getCost(), 0, tiger.getBaseFoodCost(), tiger.getPayoff());
+       arrayOfTi[i] = Tiger(0, 10000, 0, baseCost*5, 10000*0.2);
     }
     account -= (numOfTig*tiger.getCost());
 
@@ -162,9 +167,8 @@ void Zoo::play(){
 
     for(int i =0; i <numOfPeng; i++) {
 
-        arrayOfPe[i] = Penguin(0, penguin.getCost(), 0, penguin.getBaseFoodCost(), penguin.getPayoff());
+        arrayOfPe[i] = Penguin(0, 1000, 0, baseCost, 1000 * 0.1);
     }
-
     account -= (numOfPeng * penguin.getCost());
 
     std::cin.clear();
@@ -187,7 +191,8 @@ void Zoo::play(){
 
     for(int i =0; i <numOfTurt; i++) {
 
-        arrayOfTur[i] = Turtle(0, turtle.getCost(), 0, turtle.getBaseFoodCost(), turtle.getPayoff());
+        arrayOfTur[i] = Turtle(0, 100,0,baseCost*0.5, 100*0.05);
+                //(0, turtle.getCost(), 0, turtle.getBaseFoodCost(), turtle.getPayoff());
     }
     account -= (numOfTurt* turtle.getCost());
 
@@ -257,6 +262,7 @@ void Zoo::play(){
             int dice[]={1,2,3,1,1,1};
             std::uniform_int_distribution <int> dist7(0, 5);
             cheapOpt = dist7(mt);
+            std::cout<<"feedOpt 1 random number: "<<std::endl;
 
             event = dice[cheapOpt];
         }
@@ -273,6 +279,8 @@ void Zoo::play(){
             std::uniform_int_distribution <int> dist8(0, 5);
             premOpt = dist8(mt);
 
+            std::cout<<"feedOpt 3 random number: "<<premOpt<<std::endl;
+
             event = dice2[premOpt];
         }
 
@@ -283,6 +291,8 @@ void Zoo::play(){
 
             std::uniform_int_distribution <int> dist(1, 3);
             event = dist(mt);
+
+            std::cout<<"feedOpt 2 random number: "<<event<<std::endl;
 
         }
 
@@ -343,9 +353,9 @@ void Zoo::play(){
         account= account + profit;
 
         std::cout<<"\nNow it's the time to check your balance."<<std::endl;
-        std::cout<<"Today's Tiger payoff "<<numOfTig * tiger.getPayoff()<<std::endl;
-       // std::cout<<"The Penguin's payoff "<<numOfPeng * penguin.getPayoff()<<std::endl;
-        std::cout<<"The Turtle's payoff "<<numOfTurt * turtle.getPayoff()<<std::endl;
+      //std::cout<<"Today's Tiger payoff "<<numOfTig * tiger.getPayoff()<<std::endl;
+      //std::cout<<"The Penguin's payoff "<<numOfPeng * penguin.getPayoff()<<std::endl;
+      //std::cout<<"The Turtle's payoff "<<numOfTurt * turtle.getPayoff()<<std::endl;
         std::cout<<"So, Your today's income from admission fee is "<<todayAIncome<<std::endl;
         std::cout<<"And, today's your bonus income is "<<bonus<<std::endl;
         std::cout<<"Today's your profit(Admission income + bonus - daily cost)= "<<profit<<std::endl;
@@ -403,7 +413,8 @@ void Zoo::play(){
 
                 }
                 //Adds a new tiger to the array.
-                arrayOfTi[numOfTig] = Tiger(3, tiger.getCost(), 0, tiger.getBaseFoodCost(), tiger.getPayoff());
+                arrayOfTi[numOfTig] = Tiger(3, 10000, 0, baseCost*5, 10000*0.2);
+                        //(3, tiger.getCost(), 0, tiger.getBaseFoodCost(), tiger.getPayoff());
                 numOfTig +=1;
                 account -= tiger.getCost();
                 std::cout<<"After you buy the tiger, your balance is "<<account<<std::endl;
@@ -417,7 +428,8 @@ void Zoo::play(){
                     room.arrayPen(arrayOfPe, room.getRoomOfPe());
 
                 }
-                arrayOfPe[numOfPeng] = Penguin(3, penguin.getCost(), 0, penguin.getBaseFoodCost(), penguin.getPayoff());
+                arrayOfPe[numOfPeng] = Penguin(3, 1000, 0, baseCost, 1000*0.1);
+                        //(3, penguin.getCost(), 0, penguin.getBaseFoodCost(), penguin.getPayoff());
                 numOfPeng+=1;
                 account -= penguin.getCost();
                 std::cout<<"After you buy the penguin, your balance is "<<account<<std::endl;
@@ -432,7 +444,8 @@ void Zoo::play(){
                     room.arrayTur(arrayOfTur, room.getRoomOfTu());
 
                 }
-                arrayOfTur[numOfTurt] = Turtle(3, turtle.getCost(), 0, turtle.getBaseFoodCost(), turtle.getPayoff());
+                arrayOfTur[numOfTurt] = Turtle(3, 100, 0, baseCost*0.5, 100*0.05);
+                        //(3, turtle.getCost(), 0, turtle.getBaseFoodCost(), turtle.getPayoff());
                 numOfTurt+=1;
                 account -= turtle.getCost();
                 std::cout<<"After you buy the turtle, your balance is "<<account<<std::endl;

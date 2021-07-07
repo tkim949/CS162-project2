@@ -56,18 +56,35 @@ void DArray::arrayTiger(Tiger *arr, int roomOfTi){
     for (int i = 0; i < roomOfTi; i++) {
         temp_ti[i] = arr[i];
     }
-    //delete[] arr;
+    delete[] arr;
 
-    for (int i = 0; i < roomOfTi * 2; i++) {
-       arr[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
-    }
+    //for (int i = 0; i < roomOfTi * 2; i++) {
+    //   arr[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
+    //}
     arr = temp_ti;
     setRoomOfTi(roomOfTi*2);
 }
 
 void DArray::arrayPen(Penguin *arra, int roomOfPe){
+    //Penguin peng;
 
     Penguin *temp_pe = new Penguin[roomOfPe * 2];
+    /********************************
+    for(int i=0; i< roomOfPe ; i++) {
+
+        temp_pe[i] = arra[i];
+    }
+
+    for(int j=0; j<roomOfPe ; j++){
+
+        temp_pe[roomOfPe +j] = Penguin(0, 0.00, 0, 0.00, 0.00);
+    }
+
+    delete [] arra;
+
+    arra = temp_pe;
+
+    **********************************/
 
     for (int i = 0; i < roomOfPe * 2; i++) {
         temp_pe[i] = Penguin(0, 0.00, 0, 0.00, 0.00);
@@ -77,12 +94,13 @@ void DArray::arrayPen(Penguin *arra, int roomOfPe){
         temp_pe[i] = arra[i];
     }
 
-    //delete [] arra;
+    delete [] arra;
 
-    for (int i = roomOfPe; i < roomOfPe * 2; i++) {
-        arra[i] = Penguin(0, 0.00, 0, 0.00, 0.00);
-    }
+   // for (int i = roomOfPe; i < roomOfPe * 2; i++) {
+   //     arra[i] = Penguin(0, 0.00, 0, 0.00, 0.00);
+  //  }
     arra = temp_pe;
+
     setRoomOfPe(roomOfPe*2);
 
 }
@@ -98,11 +116,11 @@ void DArray::arrayTur(Turtle *array, int roomOfTu){
     for (int i = 0; i < roomOfTu; i++) {
         temp_tu[i] = array[i];
     }
-    //delete [] array;
+    delete [] array;
 
-    for (int i = roomOfTu; i < roomOfTu * 2; i++) {
-       array[i] = Turtle(0, 0.00, 0, 0.00, 0.00);
-    }
+   // for (int i = roomOfTu; i < roomOfTu * 2; i++) {
+   //    array[i] = Turtle(0, 0.00, 0, 0.00, 0.00);
+   // }
 
     array = temp_tu;
     setRoomOfTu(roomOfTu*2);
@@ -116,7 +134,8 @@ void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Tu
 
     int whoSick;
 
-    int *allAnimal = new int[numOfAni];
+    //int *allAnimal = new int[numOfAni];
+    int allAnimal[numOfAni];
 
     for (int i = 0; i < ti; i++) {
 
@@ -210,7 +229,6 @@ void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Tu
         }
 
     }
-    delete[] allAnimal;
 
 }
 
@@ -228,7 +246,8 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
     }
     std::cout <<"Number of Adult Tigers: " << numAdTi << std::endl;
 
-    int *adultTiger = new int[numAdTi];
+   // int *adultTiger = new int[numAdTi];
+      int adultTiger [numAdTi];
 
     int j = 0;
     for (int i = 0; i < numTi; i++) {
@@ -246,7 +265,8 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
     }
     std::cout <<"Number of Adult penguins: " << numAdPen << std::endl;
 
-    int *adultPenguin = new int[numAdPen];
+    //int *adultPenguin = new int[numAdPen];
+      int adultPenguin[numAdPen];
 
     int k = 0;
     for (int i = 0; i < numPen; i++) {
@@ -265,7 +285,8 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
     }
     std::cout << "Number of Adult Turtle: " << numAdTur << std::endl;
 
-    int *adultTurtle = new int[numAdTur];
+    //int *adultTurtle = new int[numAdTur];
+    int adultTurtle[numAdTur];
 
     int l = 0;
     for (int i = 0; i < numTurt; i++) {
@@ -312,6 +333,7 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
 
             }
             //Add the new baby to the array of Tiger.
+
             arr[numTi - 1] = Tiger(0, 10000.00, 0, zoo.baseCost*5, 10000.00*0.2);
 
         }
@@ -339,6 +361,7 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
 
             }
 
+            Penguin peng;
             //Adds the penguin babies to the array of Penguin.
             for (int i = 0; i < 5; i++) {
                 arra[numPen - 5 + i] = Penguin(0, 1000.00, 0, zoo.baseCost, 1000.00*0.1);
@@ -376,7 +399,5 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
         }
 
     }
-    delete[] adultTiger;
-    delete[] adultPenguin;
-    delete[] adultTurtle;
+
 }
