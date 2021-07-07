@@ -14,19 +14,16 @@ class Zoo {
 
 protected:
 
-
-    //int day = 0;
+    int day = 0;
     int numOfTig =0;
     int numOfPeng =0;
     int numOfTurt =0;
 
 
-
 public:
     Zoo();
     ~Zoo();
-
-    /*************************
+    /***********************************
     int getDay();
     void setDay(int d);
     int getNumOfTig();
@@ -35,7 +32,7 @@ public:
     void setNumOfPeng(int pen);
     int getNumOfTurt();
     void setNumOfTurt(int turt);
-    *******************************/
+     **********************************/
     void play();
     double baseCost = 10.00;
 

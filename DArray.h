@@ -36,19 +36,12 @@ public:
     void setRoomOfPe(int pe);
     int getRoomOfTu();
     void setRoomOfTu(int tu);
-    /***************************************
+
     void arrayTiger(Tiger *arr, int sizeOfTi);
     void arrayPen(Penguin *arra, int sizeOfPe);
     void arrayTur(Turtle *array, int sizeOfTu);
     void pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Turtle *array);
     void whoHasBaby(int &rTiger, int &rPenguin, int &rTurtle, Tiger *arr, Penguin *arra, Turtle *array);
-     ****************************************/
-
-    void arrayTiger(Animal *arr, int sizeOfTi);
-    void arrayPen(Animal *arra, int sizeOfPe);
-    void arrayTur(Animal *array, int sizeOfTu);
-    void pickRemove(int &ti, int &pe, int &tu, Animal *arr, Animal *arra, Animal *array);
-    void whoHasBaby(int &rTiger, int &rPenguin, int &rTurtle, Animal *arr, Animal *arra, Animal *array);
 
 };
 
