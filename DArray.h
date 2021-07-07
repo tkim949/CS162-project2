@@ -36,17 +36,19 @@ public:
     void setRoomOfPe(int pe);
     int getRoomOfTu();
     void setRoomOfTu(int tu);
+    /***************************************
     void arrayTiger(Tiger *arr, int sizeOfTi);
     void arrayPen(Penguin *arra, int sizeOfPe);
     void arrayTur(Turtle *array, int sizeOfTu);
-    void tigerSick(Tiger *arr, int sickNum);
-    void penguinSick(Penguin *arra, int pickNum);
-    void turtleSick(Turtle *array, int rollNum);
-    //void pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Turtle *array);
-    void tigerHasBaby(Tiger *arr, int &numOfTiger, int goNum);
-    void penguinHasBaby(Penguin *arra, int &numOfPenguin, int getNum);
-    void turtleHasBaby(Turtle *array, int &numOfTurtle, int takeNum);
-    //void whoHasBaby(int &rTiger, int &rPenguin, int &rTurtle, Tiger *arr, Penguin *arra, Turtle *array);
+    void pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Turtle *array);
+    void whoHasBaby(int &rTiger, int &rPenguin, int &rTurtle, Tiger *arr, Penguin *arra, Turtle *array);
+     ****************************************/
+
+    void arrayTiger(Animal *arr, int sizeOfTi);
+    void arrayPen(Animal *arra, int sizeOfPe);
+    void arrayTur(Animal *array, int sizeOfTu);
+    void pickRemove(int &ti, int &pe, int &tu, Animal *arr, Animal *arra, Animal *array);
+    void whoHasBaby(int &rTiger, int &rPenguin, int &rTurtle, Animal *arr, Animal *arra, Animal *array);
 
 };
 

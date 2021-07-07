@@ -43,9 +43,12 @@ void DArray::setRoomOfTu(int tu){
     roomOfTu = tu;
 
 }
-void DArray::arrayTiger(Tiger *arr, int roomOfTi){
 
-    Tiger *temp_ti = new Tiger[roomOfTi * 2];
+void DArray::arrayTiger(Animal *arr, int roomOfTi){
+//void DArray::arrayTiger(Tiger *arr, int roomOfTi){
+
+    //Tiger *temp_ti = new Tiger[roomOfTi * 2];
+    Animal *temp_ti = new Tiger[roomOfTi * 2];
 
     for (int i = 0; i < roomOfTi * 2; i++) {
         temp_ti[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
@@ -54,18 +57,24 @@ void DArray::arrayTiger(Tiger *arr, int roomOfTi){
     for (int i = 0; i < roomOfTi; i++) {
         temp_ti[i] = arr[i];
     }
+    //delete[] arr;
+    //delete arr;
     setRoomOfTi(roomOfTi*2);
-   // delete[] arr;
-   // for (int i = 0; i < sizeOfTi * 2; i++) {
-    //    arr[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
-   // }
+   //
+    for (int i = 0; i < roomOfTi * 2; i++) {
+       arr[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
+    }
 
     arr = temp_ti;
 
 }
-void DArray::arrayPen(Penguin *arra, int roomOfPe){
 
-    Penguin *temp_pe = new Penguin[roomOfPe * 2];
+void DArray::arrayPen(Animal *arra, int roomOfPe){
+//void DArray::arrayPen(Penguin *arra, int roomOfPe){
+
+
+    //Penguin *temp_pe = new Penguin[roomOfPe * 2];
+    Animal *temp_pe = new Penguin[roomOfPe * 2];
 
     for (int i = 0; i < roomOfPe * 2; i++) {
         temp_pe[i] = Penguin(0, 0.00, 0, 0.00, 0.00);
@@ -74,6 +83,9 @@ void DArray::arrayPen(Penguin *arra, int roomOfPe){
     for (int i = 0; i < roomOfPe; i++) {
         temp_pe[i] = arra[i];
     }
+    //issue occur point!
+    //delete [] arra;
+    //delete arra;
     setRoomOfPe(roomOfPe*2);
 
     for (int i = roomOfPe; i < roomOfPe * 2; i++) {
@@ -83,9 +95,12 @@ void DArray::arrayPen(Penguin *arra, int roomOfPe){
     arra = temp_pe;
 
 }
-void DArray::arrayTur(Turtle *array, int roomOfTu){
 
-    Turtle *temp_tu = new Turtle[roomOfTu * 2];
+void DArray::arrayTur(Animal *array, int roomOfTu){
+//void DArray::arrayTur(Turtle *array, int roomOfTu){
+
+    //Turtle *temp_tu = new Turtle[roomOfTu * 2];
+    Animal *temp_tu = new Turtle[roomOfTu * 2];
 
     for (int i = 0; i < roomOfTu * 2; i++) {
         temp_tu[i] = Turtle(0, 0.00, 0, 0.00, 0.00);
@@ -94,9 +109,9 @@ void DArray::arrayTur(Turtle *array, int roomOfTu){
     for (int i = 0; i < roomOfTu; i++) {
         temp_tu[i] = array[i];
     }
-
+    //delete [] array;
+    //delete array;
     setRoomOfTu(roomOfTu*2);
-   // delete[] array;
 
     for (int i = roomOfTu; i < roomOfTu * 2; i++) {
        array[i] = Turtle(0, 0.00, 0, 0.00, 0.00);
@@ -106,66 +121,12 @@ void DArray::arrayTur(Turtle *array, int roomOfTu){
 
 }
 
-void DArray::tigerSick(Tiger *arr, int sickNum){
+void DArray::pickRemove(int &ti, int &pe, int &tu, Animal *arr, Animal *arra, Animal *array) {
+//void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Turtle *array) {
 
-    std::cout << "Your Tiger number " << sickNum + 1 << " got sick and died. So sorry!" << std::endl;
-
-    //nyc.setNumOfTig(ti);
-
-    for (int j = sickNum; j < roomOfTi; j++) {
-
-        Tiger temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-    }
-    arr[roomOfTi - 1] = Tiger(0, 0.00, 0, 0.00, 0.00);
-
-}
-void DArray::penguinSick(Penguin *arra, int pickNum){
-
-    std::cout << "Your Penguin number " << pickNum + 1 << " got sick and died. So sorry" << std::endl;
-
-    for (int j = pickNum; j < roomOfPe; j++) {
-
-        Penguin temp = Penguin(0, 0.00, 0, 0.00, 0.00);
-        //Penguin temp = arra[j];
-        temp = arra[j];
-        arra[j] = arra[j + 1];
-        arra[j + 1] = temp;
-    }
-    arra[roomOfPe - 1] = Penguin(0, 0.00, 0, 0.00, 0.00);
-
-    //std::cout<<"The Turtle is (after the penguin die): "<<std::endl;
-    //for(int i=0; i<roomOfTu; i++){
-    //    std::cout<<"number "<<i+1<<" : "<<array[i].getAge()<<" , "<<array[i].getCost()<<" "<<array[i].getNumOfBabies()<<std::endl;
-    //}
-
-}
-void DArray::turtleSick(Turtle *array, int rollNum){
-
-
-    std::cout << "Your Turtle number " << rollNum + 1 << " got sick and died. So sorry" << std::endl;
-
-
-    for (int j = rollNum; j < roomOfTu; j++) {
-
-        //Turtle temp = array[j];
-        Turtle temp = Turtle(0, 0.00, 0, 0.00, 0.00);
-        temp = array[j];
-        array[j] = array[j + 1];
-        array[j + 1] = temp;
-
-    }
-    array[roomOfTu - 1] = Turtle(0, 0.00, 0, 0.00, 0.00);
-}
-
-
-/************************************************************************************************
-void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Turtle *array) {
 
     Zoo nyc;
 
-    //int numOfAni = nyc.getNumOfTig()+ nyc.getNumOfPeng()+ nyc.getNumOfTurt();
     int numOfAni = ti + pe + tu;
 
     std::cout << "Tiger num " << ti << "  ";
@@ -191,12 +152,14 @@ void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Tu
 
     if (numOfAni <= 0) {
         std::cout<<"I don't know how to say in this case, But you don't have any animal.so no animal dies."<<std::endl;
-    }
 
+        delete[] allAnimal;
+        //allAnimal = 0;
+    }
 
     else { //numOfAnimal>0
 
-        std::cout<<"The Turtle is (before the rolling dice): "<<std::endl;
+        std::cout<<"The Turtle is (before a penguin is picked to be sick.): "<<std::endl;
         for(int i=0; i<roomOfTu; i++){
             std::cout<<"number "<<i+1<<" : "<<array[i].getAge()<<" , "<<array[i].getCost()<<" "<<array[i].getNumOfBabies()<<std::endl;
         }
@@ -217,35 +180,42 @@ void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Tu
 
             for (int j = whoSick; j < roomOfTi; j++) {
 
-                Tiger temp = arr[j];
+                //Tiger temp = arr[j];
+                Animal temp = arr[j];
+                //temp = arra[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
             arr[roomOfTi - 1] = Tiger(0, 0.00, 0, 0.00, 0.00);
+            delete[] allAnimal;
+           // allAnimal = 0;
         }
             //A Penguin get sick and remove
         else if (whoSick >= ti && whoSick < ti + pe) {
 
             pe -= 1;
-
             int sickP = whoSick - ti;
 
             std::cout << "Your Penguin number " << sickP + 1 << " got sick and died. So sorry" << std::endl;
 
             for (int j = sickP; j < roomOfPe; j++) {
 
-                Penguin temp = Penguin(0, 0.00, 0, 0.00, 0.00);
+
                 //Penguin temp = arra[j];
-                temp = arra[j];
+                Animal temp = arra[j];
+               // temp = arra[j];
                 arra[j] = arra[j + 1];
                 arra[j + 1] = temp;
             }
             arra[roomOfPe - 1] = Penguin(0, 0.00, 0, 0.00, 0.00);
 
+            //Check turtle!
             std::cout<<"The Turtle is (after the penguin die): "<<std::endl;
             for(int i=0; i<roomOfTu; i++){
                 std::cout<<"number "<<i+1<<" : "<<array[i].getAge()<<" , "<<array[i].getCost()<<" "<<array[i].getNumOfBabies()<<std::endl;
             }
+            delete[] allAnimal;
+           // allAnimal = 0;
         }
 
 
@@ -260,104 +230,23 @@ void DArray::pickRemove(int &ti, int &pe, int &tu, Tiger *arr, Penguin *arra, Tu
 
             for (int j = sickTu; j < roomOfTu; j++) {
 
-                //Turtle temp = array[j];
-                Turtle temp = Turtle(0, 0.00, 0, 0.00, 0.00);
-                temp = array[j];
+               //Turtle temp = array[j];
+                Animal temp = array[j];
+               // temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
-
             }
             array[roomOfTu - 1] = Turtle(0, 0.00, 0, 0.00, 0.00);
+
+            delete[] allAnimal;
+           // allAnimal = 0;
         }
 
     }
-    delete[] allAnimal;
-}
- ******************************************************************************************************************************/
-
-void DArray::tigerHasBaby(Tiger *arr, int &numOfTiger, int goNum){
-    Zoo zoo;
-
-    std::cout << "Your tiger number: "<<goNum+1<< " has a baby. Congratulations!" << std::endl;
-    numOfTiger +=1;
-
-    //Updates the baby record of the tiger who has a baby.
-    std::cout<<"Add baby to the tiger: previous baby num: "<<arr[goNum].getNumOfBabies()<<std::endl;
-
-    arr[goNum].setNumOfBabies(arr[goNum].getNumOfBabies() + 1);
-    numOfTiger +=1;
-    //zoo.setNumOfTig(numTi);
-
-    std::cout<<"Add baby to the tiger: new baby num: "<<arr[goNum].getNumOfBabies()<<std::endl;
-
-    if (numOfTiger >= roomOfTi) {
-
-        this->DArray::arrayTiger(arr, roomOfTi);
-
-        std::cout<<"Room For Tiger after resizing "<< roomOfTi<<std::endl;
-
-    }
-    //Add the new baby to the array of Tiger.
-    //arr[zoo.getNumOfTig() - 1] = Tiger(0, 10,000, 0, 10.00*5, 10,000*0.2);
-    arr[numOfTiger - 1] = Tiger(0, 10000.00, 0, zoo.baseCost*5, 10000.00*0.2);
 
 }
-void DArray::penguinHasBaby(Penguin *arra, int &numOfPenguin, int getNum){
-    Zoo zoo;
-
-    std::cout << "Your penguin number "<<getNum+1<<"  has 5 babies. Congratulations!" << std::endl;
-
-    //Updates the baby record of the Penguin who has babies.
-    std::cout<<"Add baby to the Penguin: previous baby num: "<<arra[getNum].getNumOfBabies()<<std::endl;
-
-    arra[getNum].setNumOfBabies(arra[getNum].getNumOfBabies() + 5);
-
-    std::cout<<"Add baby to the Penguin: new baby num: "<<arra[getNum].getNumOfBabies()<<std::endl;
-
-    numOfPenguin +=5;
-    //zoo.setNumOfPeng(numPen);
-    if (numOfPenguin >= roomOfPe) {
-
-        arrayPen(arra, roomOfPe);
-        std::cout<<"Room For penguin after resizing "<<roomOfPe<<std::endl;
-
-    }
-
-    //Adds the penguin babies to the array of Penguin.
-    for (int i = 0; i < 5; i++) {
-        arra[numOfPenguin - 5 + i] = Penguin(0, 1000.00, 0, zoo.baseCost, 1000.00*0.1);
-    }
-}
-
-
-void DArray::turtleHasBaby(Turtle *array, int &numOfTurtle, int takeNum){
-    Zoo zoo;
-
-    std::cout << "Your Turtle number "<<takeNum +1<<" has 10 babies.Congratulations!" << std::endl;
-
-    std::cout<<"Add baby to the turtle: previous baby num: "<<array[takeNum].getNumOfBabies()<<std::endl;
-
-    //Updates the record of the Turtle who has babies.
-    array[takeNum].setNumOfBabies(array[takeNum].getNumOfBabies() + 10);
-    numOfTurtle +=10;
-
-    std::cout<<"Add baby to the turtle: New baby num: "<<array[takeNum].getNumOfBabies()<<std::endl;
-    //zoo.setNumOfTurt(numTurt);
-
-    if (numOfTurtle >= roomOfTu) {
-
-        arrayTur(array, roomOfTu);
-        std::cout<<"Room For Turtle after resizing "<<roomOfTu<<std::endl;
-
-    }
-    //Adds the babies to the array of Turtle.
-    for (int i = 0; i < 10; i++) {
-        array[numOfTurtle - 10 + i] = Turtle(0, 100.00, 0, zoo.baseCost, 100.00*0.05);
-    }
-}
-
-/***************************************************************************************************************
-void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Penguin *arra, Turtle *array){
+void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Animal *arr, Animal *arra, Animal *array){
+//void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Penguin *arra, Turtle *array){
 //void whoHasBaby(Tiger *arr, Penguin *arra, Turtle *array) {
     Zoo zoo;
     int draw;
@@ -435,6 +324,13 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
 
     if (numAdAnimal <= 0) {
         std::cout << "Sorry. You don't have any adult animals. Maybe next time!" << std::endl;
+
+        delete[] adultTiger;
+        //adultTiger =0;
+        delete[] adultPenguin;
+        //adultPenguin =0;
+        delete[] adultTurtle;
+       // adultTurtle =0;
     }
 
 
@@ -446,7 +342,6 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
             //std::cout<<"Tiger cost inside whohasbaby fuct"<<std::endl;
             int chosenTi;
             chosenTi = adultTiger[draw];
-
             std::cout << "Your tiger number: "<<chosenTi+1<< " has a baby. Congratulations!" << std::endl;
 
             //Updates the baby record of the tiger who has a baby.
@@ -468,6 +363,13 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
             //Add the new baby to the array of Tiger.
             //arr[zoo.getNumOfTig() - 1] = Tiger(0, 10,000, 0, 10.00*5, 10,000*0.2);
             arr[numTi - 1] = Tiger(0, 10000.00, 0, zoo.baseCost*5, 10000.00*0.2);
+
+            delete[] adultTiger;
+           // adultTiger =0;
+            delete[] adultPenguin;
+           // adultPenguin =0;
+            delete[] adultTurtle;
+           // adultTurtle =0;
         }
 
             //A penguin has 5 babies.
@@ -475,7 +377,7 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
         else if (draw >= numAdTi && draw < numAdTi + numAdPen) {
             //Penguin pe;
             //Animal *peng = new Penguin();
-
+           // peng->getCost();
             int chosenPen;
             chosenPen = adultPenguin[draw - numAdTi];
             std::cout << "Your penguin number "<<chosenPen+1<<"  has 5 babies. Congratulations!" << std::endl;
@@ -491,6 +393,7 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
             //zoo.setNumOfPeng(numPen);
             if (numPen >= roomOfPe) {
 
+                //issue occur point!
                 arrayPen(arra, roomOfPe);
                 std::cout<<"Room For penguin after resizing "<<roomOfPe<<std::endl;
 
@@ -500,7 +403,12 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
             for (int i = 0; i < 5; i++) {
                 arra[numPen - 5 + i] = Penguin(0, 1000.00, 0, zoo.baseCost, 1000.00*0.1);
             }
-
+            delete[] adultTiger;
+           // adultTiger =0;
+            delete[] adultPenguin;
+           // adultPenguin =0;
+            delete[] adultTurtle;
+           // adultTurtle =0;
         }
             //A turtle has 10 babies.
 
@@ -530,11 +438,14 @@ void DArray::whoHasBaby(int &numTi, int &numPen, int &numTurt, Tiger *arr, Pengu
             for (int i = 0; i < 10; i++) {
                 array[numTurt - 10 + i] = Turtle(0, 100.00, 0, zoo.baseCost, 100.00*0.05);
             }
+            delete[] adultTiger;
+           // adultTiger =0;
+            delete[] adultPenguin;
+           // adultPenguin =0;
+            delete[] adultTurtle;
+           // adultTurtle =0;
         }
-        //delete [] allAnimal;
+
     }
-    delete[] adultTiger;
-    delete[] adultPenguin;
-    delete[] adultTurtle;
+
 }
- *********************************************************************************************************************/

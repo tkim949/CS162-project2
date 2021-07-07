@@ -15,18 +15,18 @@
 #include "Penguin.h"
 #include "Turtle.h"
 #include "DArray.h"
+#include <memory>
 
 Zoo::Zoo()=default;
 Zoo::~Zoo()=default;
 
-/*************************************
+/**********************************
 int Zoo::getDay(){
     return this -> day;
 }
 void Zoo::setDay(int d){
     day = d;
 }
-
 int Zoo::getNumOfTig(){
     return numOfTig;
 }
@@ -49,8 +49,7 @@ int Zoo::getNumOfTurt(){
 void Zoo::setNumOfTurt(int turt){
     numOfTurt =turt;
 }
-**************************************/
-
+************************************************/
 void Zoo::play(){
 
     std::cout<<"Welcome to the Zoo! Now you run this Fantastic Zoo."<<std::endl;
@@ -64,7 +63,6 @@ void Zoo::play(){
     std::cout<<std::endl;
 
     double account = 100000.00;
-    int day =0;
 
     Animal animal;
     
@@ -89,22 +87,24 @@ void Zoo::play(){
 
     room.setRoomOfTi(10);
     //Tiger * arrayOfTi = new Tiger();
-    Tiger * arrayOfTi = new Tiger[room.getRoomOfTi()];
+    //Tiger * arrayOfTi = new Tiger[room.getRoomOfTi()];
+    Animal * arrayOfTi = new Tiger[room.getRoomOfTi()];
 
     for(int i=0; i<room.getRoomOfTi(); i++){
         arrayOfTi[i] = Tiger(0, 0.00, 0, 0.00, 0.00);
     }
 
     room.setRoomOfPe(10);
-    Penguin * arrayOfPe = new Penguin[room.getRoomOfPe()];
-
+    //Penguin * arrayOfPe = new Penguin[room.getRoomOfPe()];
+    Animal * arrayOfPe = new Penguin[room.getRoomOfPe()];
     for(int i=0; i<room.getRoomOfPe(); i++){
 
         arrayOfPe[i] = Penguin(0, 0.00, 0, 0.00, 0.00);
     }
 
     room.setRoomOfTu(10);
-    Turtle * arrayOfTur = new Turtle[room.getRoomOfTu()];
+    //Turtle * arrayOfTur = new Turtle[room.getRoomOfTu()];
+    Animal * arrayOfTur = new Turtle[room.getRoomOfTu()];
 
     for(int i=0; i<room.getRoomOfTu(); i++){
 
@@ -211,15 +211,12 @@ void Zoo::play(){
             arrayOfTur[i].setAge(arrayOfTur[i].getAge()+1);
         }
 
+
         double costPerDay;
         //Feed the animals and deduct the cost from the account.
         costPerDay = (numOfTig*baseCost*5)+(numOfPeng*baseCost)+(numOfTurt*baseCost*0.5);
         std::cout<<"Today's feeding cost is "<<costPerDay<<std::endl;
 
-        std::cout<<"The Turtle is (before the event!: "<<std::endl;
-        for(int i=0; i<room.getRoomOfTu(); i++){
-            std::cout<<"number "<<i+1<<" : "<<arrayOfTur[i].getAge()<<" , "<<arrayOfTur[i].getCost()<<" "<<arrayOfTur[i].getNumOfBabies()<<std::endl;
-        }
 
         //Random Event!
         int event;
@@ -235,64 +232,7 @@ void Zoo::play(){
         //Sickness occurs and one animal that is chosen will die.
         if (event == 1) {
 
-               int numOfAni = numOfTig + numOfPeng + numOfTurt;
-               int whoSick;
-
-                int *allAnimal = new int[numOfAni];
-
-                for (int i = 0; i < numOfTig; i++) {
-
-                    allAnimal[i] = i;
-                }
-                for (int i = numOfTig; i < numOfTig + numOfPeng; i++) {
-
-                    allAnimal[i] = i;
-                }
-                for (int i = numOfTig + numOfPeng; i < numOfAni; i++) {
-
-                    allAnimal[i] = i;
-                }
-
-                if (numOfAni <= 0) {
-                    std::cout<<"I don't know how to say in this case, But you don't have any animal.so no animal dies."<<std::endl;
-                }
-
-
-                else { //numOfAnimal>0
-
-                    std::uniform_int_distribution<int> dist2(1, numOfAni);
-                    whoSick = dist2(mt) - 1;
-
-                    std::cout << "Who sick? number is: " << whoSick + 1 << std::endl;
-
-                    // A Tiger gets sick and remove
-                    if (whoSick < numOfTig) {
-                        numOfTig -= 1;
-                        room.tigerSick(arrayOfTi, whoSick);
-
-                    }
-                    else if (whoSick >= numOfTig && whoSick < numOfTig + numOfPeng) {
-                        numOfPeng -= 1;
-                        int sickP = whoSick - numOfTig;
-
-                        room.penguinSick(arrayOfPe, sickP);
-
-                    }
-                    else // whoSick >= numOfTi+numOfPe && whoSick < numOfAni
-                    {
-                        numOfTurt -= 1;
-                        int sickTu = whoSick - (numOfTig + numOfPeng);
-
-                        room.turtleSick(arrayOfTur, sickTu);
-                    }
-                }
-
-               delete[] allAnimal;
-
-            //room.pickRemove(numOfTig, numOfPeng, numOfTurt, arrayOfTi, arrayOfPe, arrayOfTur);
-            std::cout<<"after the funct 'who sick'. The num of Tiger: "<<numOfTig<<std::endl;
-            std::cout<<"after the funct 'who sick'. The num of Penguin: "<<numOfPeng<<std::endl;
-            std::cout<<"after the funct 'who sick'. The num of Turtle: "<<numOfTurt<<std::endl;
+            room.pickRemove(numOfTig, numOfPeng, numOfTurt, arrayOfTi, arrayOfPe, arrayOfTur);
 
         }
         // A boom in zoo attendance occurs
@@ -308,121 +248,10 @@ void Zoo::play(){
         //This event gives babies to the animal, "event ==3"
         else{
 
-            int draw;
-
-            int numAdTi = 0;
-
-            for (int i = 0; i < numOfTig; i++) {
-
-                if (arrayOfTi[i].getAge() >= 3) {
-                    numAdTi += 1;
-                }
-            }
-            std::cout <<"Number of Adult Tigers: " << numAdTi << std::endl;
-
-            int *adultTiger = new int[numAdTi];
-
-            int j = 0;
-            for (int i = 0; i < numOfTig; i++) {
-                if (arrayOfTi[i].getAge() >= 3) {
-                    adultTiger[j] = i;
-                    j++;
-                }
-            }
-
-            int numAdPen = 0;
-            for (int i = 0; i < numOfPeng; i++) {
-                if (arrayOfPe[i].getAge() >= 3) {
-                    numAdPen += 1;
-                }
-            }
-            std::cout <<"Number of Adult penguins: " << numAdPen << std::endl;
-
-            int *adultPenguin = new int[numAdPen];
-
-            int k = 0;
-            for (int i = 0; i < numOfPeng; i++) {
-                if (arrayOfPe[i].getAge() >= 3) {
-                    adultPenguin[k] = i;
-                    k++;
-                }
-            }
-
-            int numAdTur = 0;
-            for (int i = 0; i < numOfTurt; i++) {
-                if (arrayOfTur[i].getAge() >= 3) {
-                    numAdTur += 1;
-                }
-            }
-            std::cout << "Number of Adult Turtle: " << numAdTur << std::endl;
-
-            int *adultTurtle = new int[numAdTur];
-
-            int l = 0;
-            for (int i = 0; i < numOfTurt; i++) {
-                if (arrayOfTur[i].getAge() >= 3) {
-                    adultTurtle[l] = i;
-                    l++;
-                }
-            }
-
-            int numAdAnimal = numAdTi + numAdPen + numAdTur;
-
-            std::uniform_int_distribution<int> dist9(1, numAdAnimal);
-            draw = dist9(mt)-1;
-
-
-            if (numAdAnimal <= 0) {
-                std::cout << "Sorry. You don't have any adult animals. Maybe next time!" << std::endl;
-            }
-
-            //When there is one or more adult animal.
-            else {
-                //A Tiger has a baby.
-                if (draw < numAdTi) {
-
-                    int chosenTi;
-                    chosenTi = adultTiger[draw];
-
-                    room.tigerHasBaby(arrayOfTi, numOfTig, chosenTi);
-
-                    }
-                else if (draw >= numAdTi && draw < numAdTi + numAdPen) {
-                    //Penguin pe;
-                    //Animal *peng = new Penguin();
-
-                    int chosenPen;
-                    chosenPen = adultPenguin[draw - numAdTi];
-
-                    room.penguinHasBaby(arrayOfPe, numOfPeng, chosenPen);
-                }
-                else // whoSick >= numOfTi+numOfPe && whoSick < numOfAni
-               {
-
-                    int chosenTurtle;
-                    chosenTurtle = adultTurtle[draw - numAdTi - numAdPen];
-
-                    room.turtleHasBaby(arrayOfTur, numOfTurt, chosenTurtle);
-
-                    }
-             }
-
-            //room.whoHasBaby(numOfTig, numOfPeng, numOfTurt, arrayOfTi, arrayOfPe, arrayOfTur);
-
-            std::cout<<"after the funct 'who has babay'. The num of Tiger: "<<numOfTig<<std::endl;
-            std::cout<<"after the funct 'who has babay'. The num of Penguin: "<<numOfPeng<<std::endl;
-            std::cout<<"after the funct 'who has baaby.' The num of Turtle: "<<numOfTurt<<std::endl;
-
-            delete[] adultTiger;
-            delete[] adultPenguin;
-            delete[] adultTurtle;
+            room.whoHasBaby(numOfTig, numOfPeng, numOfTurt, arrayOfTi, arrayOfPe, arrayOfTur);
 
         }
 
-        std::cout<<"The Turtle is (just after the event!: "<<std::endl;
-        for(int i=0; i<room.getRoomOfTu(); i++){
-            std::cout<<"number "<<i+1<<" : "<<arrayOfTur[i].getAge()<<" , "<<arrayOfTur[i].getCost()<<" "<<arrayOfTur[i].getNumOfBabies()<<std::endl;
-        }
 
         double todayAIncome =numOfTig*tiger.getPayoff()+numOfPeng*penguin.getPayoff()+numOfTurt*turtle.getPayoff();
         double profit = todayAIncome + bonus - costPerDay;
@@ -436,6 +265,8 @@ void Zoo::play(){
         std::cout<<"And, today's your bonus income is "<<bonus<<std::endl;
         std::cout<<"Today's your profit(Admission income + bonus - daily cost)= "<<profit<<std::endl;
         std::cout<<"Now your balance is "<<account<<std::endl;
+
+
 
         double buyNewOne;
         int buyNew;
@@ -490,7 +321,7 @@ void Zoo::play(){
                 }
                 //Adds a new tiger to the array.
                 arrayOfTi[numOfTig] = Tiger(3, tiger.getCost(), 0, tiger.getBaseFoodCost(), tiger.getPayoff());
-                numOfTig+=1;
+                numOfTig +=1;
                 account -= tiger.getCost();
                 std::cout<<"After you buy the tiger, your balance is "<<account<<std::endl;
             }
@@ -568,8 +399,12 @@ void Zoo::play(){
     std::cout <<"You want to stop. Good bye! See you again!" << std::endl;
     //}
 
+
     delete [] arrayOfTi;
+    arrayOfTi = 0;
     delete [] arrayOfPe;
+    arrayOfPe = 0;
     delete [] arrayOfTur;
+    arrayOfTur = 0;
 
 }
